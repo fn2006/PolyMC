@@ -1,20 +1,20 @@
 id: org.fn2006.PollyMC
 runtime: org.kde.Platform
-runtime-version: "5.15-22.08"
+runtime-version: "5.15-23.08"
 sdk: org.kde.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.openjdk17
   - org.freedesktop.Sdk.Extension.openjdk8
 add-extensions:
   org.freedesktop.Platform.VulkanLayer.gamescope:
-    version: "22.08"
+    version: "23.08"
     no-autodownload: true
     autodelete: false
     add-ld-path: lib
     directory: utils/gamescope
 
   org.freedesktop.Platform.VulkanLayer.MangoHud:
-    version: "22.08"
+    version: "23.08"
     no-autodownload: true
     autodelete: false
     add-ld-path: lib
@@ -116,16 +116,10 @@ modules:
       # post-install is running inside the build dir, we need it from the source though
       - install -Dm755 ../data/gamemoderun -t /app/bin
     sources:
-      - type: archive
-        archive-type: tar-gzip
-        url: https://api.github.com/repos/FeralInteractive/gamemode/tarball/1.7
-        sha256: 57ce73ba605d1cf12f8d13725006a895182308d93eba0f69f285648449641803
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/FeralInteractive/gamemode/releases/latest
-          version-query: .tag_name
-          url-query: .tarball_url
-          timestamp-query: .published_at
+      - type: git
+        url: https://github.com/FeralInteractive/gamemode.git
+        tag: 1.8.1
+        commit: 5180d89e66830d87f69687b95fb86f622552b94b
     cleanup:
       - /include
       - /lib/pkgconfig
