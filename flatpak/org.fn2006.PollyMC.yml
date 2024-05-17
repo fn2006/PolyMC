@@ -3,8 +3,9 @@ runtime: org.kde.Platform
 runtime-version: "5.15-23.08"
 sdk: org.kde.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.openjdk17
   - org.freedesktop.Sdk.Extension.openjdk8
+  - org.freedesktop.Sdk.Extension.openjdk17
+  - org.freedesktop.Sdk.Extension.openjdk21
 add-extensions:
   org.freedesktop.Platform.VulkanLayer.gamescope:
     version: "23.08"
@@ -20,7 +21,7 @@ add-extensions:
     add-ld-path: lib
     directory: utils/mangohud
 
-command: pollymc
+command: pollyrun
 finish-args:
   - --share=ipc
   - --socket=wayland
@@ -64,6 +65,8 @@ modules:
     buildsystem: simple
     build-commands:
       - mkdir -p /app/jdk/
+      - /usr/lib/sdk/openjdk21/install.sh
+      - mv /app/jre /app/jdk/21
       - /usr/lib/sdk/openjdk17/install.sh
       - mv /app/jre /app/jdk/17
       - /usr/lib/sdk/openjdk8/install.sh
@@ -155,14 +158,13 @@ modules:
   - name: enhance
     buildsystem: simple
     build-commands:
-      - install -Dm755 prime-run /app/bin/prime-run
-      - mv /app/bin/pollymc /app/bin/pollyrun
-      - install -Dm755 pollymc /app/bin/pollymc
+      - install -Dm755 prime-run -t /app/bin
+      - install -Dm755 pollyrun -t /app/bin
     sources:
       - type: file
         path: prime-run
       - type: file
-        path: pollymc
+        path: pollyrun
 
   - name: extensions
     buildsystem: simple
