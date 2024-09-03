@@ -15,6 +15,7 @@
   openal,
   jdk8,
   jdk17,
+  jdk21,
   gamemode,
   flite,
   mesa-demos,
@@ -24,7 +25,7 @@
   gamemodeSupport ? stdenv.isLinux,
   textToSpeechSupport ? stdenv.isLinux,
   controllerSupport ? stdenv.isLinux,
-  jdks ? [jdk17 jdk8],
+  jdks ? [jdk17 jdk8 jdk21],
   additionalLibs ? [],
   additionalPrograms ? [],
 }: let
