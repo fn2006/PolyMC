@@ -3,10 +3,11 @@ runtime: org.kde.Platform
 runtime-version: "5.15-22.08"
 sdk: org.kde.Sdk
 sdk-extensions:
+  - org.freedesktop.Sdk.Extension.openjdk21
   - org.freedesktop.Sdk.Extension.openjdk17
   - org.freedesktop.Sdk.Extension.openjdk8
 add-extensions:
-  com.valvesoftware.Steam.Utility.gamescope:
+  org.freedesktop.Platform.VulkanLayer.gamescope:
     version: stable
     add-ld-path: lib
     no-autodownload: true
